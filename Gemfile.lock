@@ -357,6 +357,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   bcrypt
   binding_of_caller
   bootstrap-sass

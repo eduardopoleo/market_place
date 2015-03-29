@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
-  root 'welcome#index'
+  root 'dashboard#show', as: 'home'
   get 'ui(/:action)', controller: 'ui'
 
+  
+  
+  resources :users, only: [:new, :create]
 end

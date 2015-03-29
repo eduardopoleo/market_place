@@ -1,0 +1,26 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.post{
+  border: solid 1px black;
+}
+
+.post-like{
+  float: right;
+  position: relative;
+  top: -10px;
+}
+
+.small-panels{
+  list-style: none;
+  display: inline;
+  float: left;
+  width:100%;
+  padding:0;
+}
+
+.small-panels li {
+  float: left;
+}
+
+

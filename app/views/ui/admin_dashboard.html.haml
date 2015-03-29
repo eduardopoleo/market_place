@@ -1,0 +1,53 @@
+= render "navbar"
+.row
+  .col-xs-2
+    .navbar-default.sidebar{:role => "navigation"}
+      .sidebar-nav.navbar-collapse
+        Welcome Rich! 
+        %ul#side-menu.nav
+          %li
+            %a{:href => "index.html"}
+              %i.fa.fa-dashboard.fa-fw
+              + New invitation
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-bar-chart-o.fa-fw
+              + Guide
+              %span.fa.arrow
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-bar-chart-o.fa-fw
+              + Shift
+              %span.fa.arrow       
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-bar-chart-o.fa-fw
+              + Todo Lists
+              %span.fa.arrow       
+  .col-xs-9
+    .row
+      .col-xs-12
+        Welcome to Dashboad!
+    .row
+      = render "panel" 
+      = render "panel" 
+      = render "panel" 
+      = render "panel" 
+
+    .row
+      .col-xs-9
+        =render "post"
+        =render "post"
+        =render "post"
+      .col-xs-3
+        = render "notifications"
+%footer.footer
+  .container.text-center
+    %small.copyright Eduardo Poleo @2015
+    %br
+      %a.social-media{:href => "https://ca.linkedin.com/pub/eduardo-poleo/56/364/a4"}
+        %span.fa-stack
+          %i.fa.fa-linkedin
+      %a.social-media{:href => "https://github.com/eduardopoleo"}
+        %span.fa-stack
+          %i.fa.fa-github

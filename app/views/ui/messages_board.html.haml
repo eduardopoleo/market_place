@@ -1,21 +1,18 @@
-= render "navbar"
-
+=render "navbar"
 .container
+  %ul.small-panels
+    %li
+      .panel-content Schedules (3) 
+    %li
+      .panel-content Guides (4)
+    %li
+      .panel-content Lists (6)
+    %li
+      .panel-content notifications (6)   
+  .row.text-center
+    Coffeeco's Discussion Board
   .row
-    .col-xs-12
-      Welcome to Dashboad!
-  .row
-    = render "panel" 
-    = render "panel" 
-    = render "panel" 
-    = render "panel" 
-
-  .row
-    .col-xs-3
-      = render "notifications"
-    .col-xs-9
-      %h2 Latest in discussion
-      %p Quick message
+    .col-xs-9.col-sm-offset-1
       =render "post"
       =render "post"
       =render "post"

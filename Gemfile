@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'rails', '4.1.1'
@@ -24,6 +25,7 @@ gem 'fog'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'stripe_event'
+
 
 
 group :development do
