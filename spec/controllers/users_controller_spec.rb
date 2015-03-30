@@ -37,6 +37,10 @@ describe UsersController do
         expect(session[:user_id]).to eq(User.first.id)
       end
 
+      it 'send a notification email when the user signs is' do
+        expect(ActionMailer::Base.deliveries.last.to).to eq([User.first.email])
+        ActionMailer::Base.deliveries.clear
+      end
     end
 
     context 'with invalid input' do

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save 
+      AppMailer.welcome_notification(@user).deliver
       flash[:success] = 'Welcome to Firecamp! Hope you enjoy the experience'
       @user.update_attribute(:admin, true)
       session[:user_id] = @user.id
