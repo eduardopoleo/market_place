@@ -14,8 +14,23 @@ describe UsersController do
   end
 
   describe 'Post create' do
-    context 'with valid input' do
-      before {post :create, user: Fabricate.attributes_for(:user)}
+    let (:token) do
+    Stripe::Token.create(
+      :card => {
+        :number => card_number,
+        :exp_month => 3,
+        :exp_year => 2016,
+        :cvc => "314"
+      },
+    ).id
+    end
+
+    context 'with valid input and valid credit card info', :vcr do
+      let(:card_number) {4242424242424242}
+
+      before{post :create,
+             user: Fabricate.attributes_for(:user),
+             stripeToken: token} 
 
       it 'redirects to the dashboard path page' do
         expect(response).to redirect_to dashboard_user_path(User.first)
@@ -40,6 +55,26 @@ describe UsersController do
       it 'send a notification email when the user signs is' do
         expect(ActionMailer::Base.deliveries.last.to).to eq([User.first.email])
         ActionMailer::Base.deliveries.clear
+      end
+    end
+
+    context 'with valid input and invalid credit card info', :vcr do
+      let(:card_number) {4000000000000002}
+
+      before{post :create,
+             user: Fabricate.attributes_for(:user),
+             stripeToken: token}
+
+      it 'renders the template' do
+        expect(response).to render_template :new
+      end
+
+      it 'does not create a user' do
+        expect(User.count).to eq(0)
+      end
+
+      it 'sets a flash message cotaining the error' do
+        expect(flash[:error]).to eq('Your card was declined.')
       end
     end
 
