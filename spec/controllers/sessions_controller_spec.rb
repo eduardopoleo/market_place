@@ -14,7 +14,7 @@ describe SessionsController do
       before {post :create, email: joe.email, password: joe.password}
 
       it 'redirects to the home path' do
-        expect(response).to redirect_to home_path
+        expect(response).to redirect_to dashboard_user_path(joe)
       end
 
       it 'sets the session id to the user id' do
@@ -51,7 +51,7 @@ describe SessionsController do
     end
 
     it 'redirects to the home path' do
-      expect(response).to redirect_to home_path
+      expect(response).to redirect_to root_path
     end
 
     it 'redirects to the home path' do

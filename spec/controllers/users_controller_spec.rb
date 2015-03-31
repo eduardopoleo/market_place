@@ -17,8 +17,8 @@ describe UsersController do
     context 'with valid input' do
       before {post :create, user: Fabricate.attributes_for(:user)}
 
-      it 'redirects to the home page' do
-        expect(response).to redirect_to home_path
+      it 'redirects to the dashboard path page' do
+        expect(response).to redirect_to dashboard_user_path(User.first)
       end
 
       it 'creates a todo' do
@@ -63,6 +63,21 @@ describe UsersController do
       it 'renders the @users variables with validatation errors' do
         post :create, user: {full_name:"something"}
         expect(assigns(:user)).to be_present
+      end
+    end
+
+    describe 'Get Dashboard' do
+      it 'renders the corresponding user dash board if loggedin?' do
+        joe = Fabricate(:user)
+        session[:user_id] = joe.id
+        #Had problems here 
+        get :dashboard, id: joe.id
+        expect(response).to render_template :dashboard
+      end
+
+      it 'redirects to the front page if not loggedin?' do
+        get :dashboard, id: 5
+        expect(response).to redirect_to root_path
       end
     end
   end
