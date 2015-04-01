@@ -35,7 +35,7 @@ describe StripeWrapper::Charge do
       stripe_response = StripeWrapper::Charge.create(
         amount: 777,
         card: token)
-      expect(stripe_response.error_message?).to eq('Your card was declined.')
+      expect(stripe_response.error_message).to eq('Your card was declined.')
     end
   end
 end

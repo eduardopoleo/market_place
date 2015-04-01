@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to dashboard_user_path(@user)
       else
-        flash[:error] = charge.response.message
+        flash[:error] = charge.error_message
         render :new
       end
     else

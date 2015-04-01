@@ -14,29 +14,22 @@ describe UsersController do
   end
 
   describe 'Post create' do
-    let (:token) do
-    Stripe::Token.create(
-      :card => {
-        :number => card_number,
-        :exp_month => 3,
-        :exp_year => 2016,
-        :cvc => "314"
-      },
-    ).id
-    end
+    context 'with valid input and valid credit card info' do
 
-    context 'with valid input and valid credit card info', :vcr do
-      let(:card_number) {4242424242424242}
-
-      before{post :create,
-             user: Fabricate.attributes_for(:user),
-             stripeToken: token} 
-
+      before do
+        charge = double('charge')
+        charge.stub(:successful?).and_return(true)
+        StripeWrapper::Charge.stub(:create).and_return(charge)
+        post :create, 
+          user: Fabricate.attributes_for(:user),
+          stripeToken: '345'
+      end
+             
       it 'redirects to the dashboard path page' do
         expect(response).to redirect_to dashboard_user_path(User.first)
       end
 
-      it 'creates a todo' do
+      it 'creates a user' do
         expect(User.count).to eq(1)
       end
       
@@ -58,12 +51,16 @@ describe UsersController do
       end
     end
 
-    context 'with valid input and invalid credit card info', :vcr do
-      let(:card_number) {4000000000000002}
-
-      before{post :create,
-             user: Fabricate.attributes_for(:user),
-             stripeToken: token}
+    context 'with valid input and invalid credit card info' do
+      before do
+        charge = double('charge')
+        charge.stub(:successful?).and_return(false)
+        charge.stub(:error_message).and_return("Your card was declined.")
+        StripeWrapper::Charge.stub(:create).and_return(charge)
+        post :create, 
+          user: Fabricate.attributes_for(:user),
+          stripeToken: '345'
+      end
 
       it 'renders the template' do
         expect(response).to render_template :new
