@@ -7,23 +7,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.valid? 
-      charge = StripeWrapper::Charge.create(
-        amount: 777,
-        card: params[:stripeToken]
-      )
-      if charge.successful? 
-        @user.save
-        @user.update_attribute(:admin, true)
-        AppMailer.welcome_notification(@user).deliver
-        flash[:success] = 'Welcome to Firecamp! Hope you enjoy the experience'
-        session[:user_id] = @user.id
-        redirect_to dashboard_user_path(@user)
-      else
-        flash[:error] = charge.error_message
-        render :new
-      end
+    user_signup = UserSignup.new(@user).signup(params[:stripeToken])
+
+    if user_signup.successful?
+      flash[:success] = 'Welcome to Firecamp! Hope you enjoy the experience'
+      session[:user_id] = @user.id
+      redirect_to dashboard_user_path(@user)
     else
+      flash[:error] = user_signup.error_message
       render :new
     end
   end
