@@ -18,8 +18,8 @@ describe UsersController do
       before do
         #If we did not need the @user to be created we could have just 
         #stub the methods in the user sign up 
-        charge = double('charge', successful?: true)
-        StripeWrapper::Charge.stub(:create).and_return(charge)
+        customer = double('customer', successful?: true)
+        StripeWrapper::Customer.stub(:create).and_return(customer)
         post :create, 
           user: Fabricate.attributes_for(:user),
           stripeToken: '345'
@@ -40,8 +40,8 @@ describe UsersController do
 
     context 'with invalid user sign up' do
       before do
-        charge = double('charge', successful?: false, error_message: "Some bad message")
-        StripeWrapper::Charge.stub(:create).and_return(charge)
+        customer = double('customer', successful?: false, error_message: "Some bad message")
+        StripeWrapper::Customer.stub(:create).and_return(customer)
         post :create, 
           user: Fabricate.attributes_for(:user),
           stripeToken: '345'

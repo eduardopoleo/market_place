@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Apr 2015 20:31:37 GMT
+      - Thu, 02 Apr 2015 20:31:33 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_Bgm0pzOoRSUx6nPF
+      - req_6j2BF28qGWciLq3u
       Stripe-Version:
       - '2015-02-18'
       Strict-Transport-Security:
@@ -58,14 +58,14 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_15nEyTKoSw2hrlQesjFwNNaq",
+          "id": "tok_15nEyPKoSw2hrlQeerGPjxjd",
           "livemode": false,
-          "created": 1428006697,
+          "created": 1428006693,
           "used": false,
           "object": "token",
           "type": "card",
           "card": {
-            "id": "card_15nEyTKoSw2hrlQeGoh0GgpF",
+            "id": "card_15nEyPKoSw2hrlQey1KAOG81",
             "object": "card",
             "last4": "4242",
             "brand": "Visa",
@@ -89,13 +89,13 @@ http_interactions:
           "client_ip": "70.49.170.83"
         }
     http_version: 
-  recorded_at: Thu, 02 Apr 2015 20:31:37 GMT
+  recorded_at: Thu, 02 Apr 2015 20:31:33 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: amount=777&currency=usd&card=tok_15nEyTKoSw2hrlQesjFwNNaq
+      string: card=tok_15nEyPKoSw2hrlQeerGPjxjd&plan=firecamp_regular&email=mona%40zemlak.org
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
@@ -112,7 +112,7 @@ http_interactions:
         eduardo-Inspiron-3537 3.13.0-46-generic #79-Ubuntu SMP Tue Mar 10 20:08:14
         UTC 2015 i686 i686 i686 GNU/Linux"}'
       Content-Length:
-      - '57'
+      - '79'
   response:
     status:
       code: 200
@@ -121,11 +121,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Apr 2015 20:31:37 GMT
+      - Thu, 02 Apr 2015 20:31:34 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1367'
+      - '2320'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -139,7 +139,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_BwLcdpkCF37j5nAw
+      - req_FyRJ84CmMI6uporg
       Stripe-Version:
       - '2015-02-18'
       Strict-Transport-Security:
@@ -148,63 +148,92 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_15nEyTKoSw2hrlQe8wu7VoBR",
-          "object": "charge",
-          "created": 1428006697,
+          "object": "customer",
+          "created": 1428006693,
+          "id": "cus_5zDPbE9GHTRnu3",
           "livemode": false,
-          "paid": true,
-          "status": "succeeded",
-          "amount": 777,
-          "currency": "usd",
-          "refunded": false,
-          "source": {
-            "id": "card_15nEyTKoSw2hrlQeGoh0GgpF",
-            "object": "card",
-            "last4": "4242",
-            "brand": "Visa",
-            "funding": "credit",
-            "exp_month": 3,
-            "exp_year": 2016,
-            "fingerprint": "yVufS9dNGxll2kqT",
-            "country": "US",
-            "name": null,
-            "address_line1": null,
-            "address_line2": null,
-            "address_city": null,
-            "address_state": null,
-            "address_zip": null,
-            "address_country": null,
-            "cvc_check": "pass",
-            "address_line1_check": null,
-            "address_zip_check": null,
-            "dynamic_last4": null,
-            "metadata": {},
-            "customer": null
-          },
-          "captured": true,
-          "balance_transaction": "txn_15nEyTKoSw2hrlQeJnMlsLU9",
-          "failure_message": null,
-          "failure_code": null,
-          "amount_refunded": 0,
-          "customer": null,
-          "invoice": null,
           "description": null,
-          "dispute": null,
+          "email": "mona@zemlak.org",
+          "delinquent": false,
           "metadata": {},
-          "statement_descriptor": null,
-          "fraud_details": {},
-          "receipt_email": null,
-          "receipt_number": null,
-          "shipping": null,
-          "application_fee": null,
-          "refunds": {
+          "subscriptions": {
             "object": "list",
-            "total_count": 0,
+            "total_count": 1,
             "has_more": false,
-            "url": "/v1/charges/ch_15nEyTKoSw2hrlQe8wu7VoBR/refunds",
-            "data": []
-          }
+            "url": "/v1/customers/cus_5zDPbE9GHTRnu3/subscriptions",
+            "data": [
+              {
+                "id": "sub_5zDPbhdArq6OoT",
+                "plan": {
+                  "interval": "month",
+                  "name": "Firecamp regular plan",
+                  "created": 1428001211,
+                  "amount": 699,
+                  "currency": "cad",
+                  "id": "firecamp_regular",
+                  "object": "plan",
+                  "livemode": false,
+                  "interval_count": 1,
+                  "trial_period_days": null,
+                  "metadata": {},
+                  "statement_descriptor": null
+                },
+                "object": "subscription",
+                "start": 1428006693,
+                "status": "active",
+                "customer": "cus_5zDPbE9GHTRnu3",
+                "cancel_at_period_end": false,
+                "current_period_start": 1428006693,
+                "current_period_end": 1430598693,
+                "ended_at": null,
+                "trial_start": null,
+                "trial_end": null,
+                "canceled_at": null,
+                "quantity": 1,
+                "application_fee_percent": null,
+                "discount": null,
+                "tax_percent": null,
+                "metadata": {}
+              }
+            ]
+          },
+          "discount": null,
+          "account_balance": 0,
+          "currency": "cad",
+          "sources": {
+            "object": "list",
+            "total_count": 1,
+            "has_more": false,
+            "url": "/v1/customers/cus_5zDPbE9GHTRnu3/sources",
+            "data": [
+              {
+                "id": "card_15nEyPKoSw2hrlQey1KAOG81",
+                "object": "card",
+                "last4": "4242",
+                "brand": "Visa",
+                "funding": "credit",
+                "exp_month": 3,
+                "exp_year": 2016,
+                "fingerprint": "yVufS9dNGxll2kqT",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": "pass",
+                "address_line1_check": null,
+                "address_zip_check": null,
+                "dynamic_last4": null,
+                "metadata": {},
+                "customer": "cus_5zDPbE9GHTRnu3"
+              }
+            ]
+          },
+          "default_source": "card_15nEyPKoSw2hrlQey1KAOG81"
         }
     http_version: 
-  recorded_at: Thu, 02 Apr 2015 20:31:37 GMT
+  recorded_at: Thu, 02 Apr 2015 20:31:34 GMT
 recorded_with: VCR 2.9.3

@@ -5,9 +5,9 @@ describe UserSignup do
     context "with valid user information and valid credit card" do
       let(:user_signup) {UserSignup.new(Fabricate.build(:user))}
       before do
-        charge = double('charge')
-        charge.stub(:successful?).and_return(true)
-        StripeWrapper::Charge.stub(:create).and_return(charge)
+        customer = double('customer')
+        customer.stub(:successful?).and_return(true)
+        StripeWrapper::Customer.stub(:create).and_return(customer)
         user_signup.signup('some_token')
       end
 
@@ -51,8 +51,8 @@ describe UserSignup do
     context 'with valid users info but invalid payment information' do
       let(:user_signup) {UserSignup.new(Fabricate.build(:user))}
       before do
-        charge = double('charge', successful?: false, error_message: "Your card was declined")
-        StripeWrapper::Charge.stub(:create).and_return(charge)
+        customer = double('customer', successful?: false, error_message: "Your card was declined")
+        StripeWrapper::Customer.stub(:create).and_return(customer)
         user_signup.signup('some_token')
       end
       

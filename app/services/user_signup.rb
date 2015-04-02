@@ -7,11 +7,12 @@ class UserSignup
 
   def signup(stripe_token)
     if @user.valid? 
-      charge = StripeWrapper::Charge.create(
-        amount: 777,
-        card: stripe_token
+      customer = StripeWrapper::Customer.create(
+        plan: "firecamp_regular",
+        card: stripe_token,
+        email: @user.email
       )
-      if charge.successful? 
+      if customer.successful? 
         @status = :success
         @user.save
         @user.update_attribute(:admin, true)
@@ -19,7 +20,7 @@ class UserSignup
         self
       else
         @status = :failed
-        @error_message = charge.error_message
+        @error_message = customer.error_message
         self
       end
     else
