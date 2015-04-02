@@ -14,48 +14,33 @@ describe UsersController do
   end
 
   describe 'Post create' do
-    context 'with valid input and valid credit card info' do
-
+    context 'with valid user signup' do
       before do
-        charge = double('charge')
-        charge.stub(:successful?).and_return(true)
+        #If we did not need the @user to be created we could have just 
+        #stub the methods in the user sign up 
+        charge = double('charge', successful?: true)
         StripeWrapper::Charge.stub(:create).and_return(charge)
         post :create, 
           user: Fabricate.attributes_for(:user),
           stripeToken: '345'
       end
-             
+
       it 'redirects to the dashboard path page' do
         expect(response).to redirect_to dashboard_user_path(User.first)
       end
 
-      it 'creates a user' do
-        expect(User.count).to eq(1)
-      end
-      
       it 'sets a success flash message' do
         expect(flash[:success]).to be_present
-      end
-      
-      it 'sets admin to equal true' do
-        expect(User.first.admin).to eq(true)
       end
 
       it 'sets the session user_id' do
         expect(session[:user_id]).to eq(User.first.id)
       end
-
-      it 'send a notification email when the user signs is' do
-        expect(ActionMailer::Base.deliveries.last.to).to eq([User.first.email])
-        ActionMailer::Base.deliveries.clear
-      end
     end
 
-    context 'with valid input and invalid credit card info' do
+    context 'with invalid user sign up' do
       before do
-        charge = double('charge')
-        charge.stub(:successful?).and_return(false)
-        charge.stub(:error_message).and_return("Your card was declined.")
+        charge = double('charge', successful?: false, error_message: "Some bad message")
         StripeWrapper::Charge.stub(:create).and_return(charge)
         post :create, 
           user: Fabricate.attributes_for(:user),
@@ -66,34 +51,11 @@ describe UsersController do
         expect(response).to render_template :new
       end
 
-      it 'does not create a user' do
-        expect(User.count).to eq(0)
-      end
-
       it 'sets a flash message cotaining the error' do
-        expect(flash[:error]).to eq('Your card was declined.')
+        expect(flash[:error]).to be_present
       end
-    end
-
-    context 'with invalid input' do
-      it 'does not create a todo with missing inputs' do
-        post :create, user: {full_name:"something"}
-        expect(User.count).to eq(0)
-      end
-
-      it 'does not create a todo repeated email' do
-        joe = Fabricate(:user, email: "joe@example.com")
-        post :create, user: Fabricate.attributes_for(:user, email: "joe@example.com")
-        expect(User.count).to eq(1)
-      end
-
-      it 'renders the new template' do
-        post :create, user: {full_name:"something"}
-        expect(response).to render_template :new
-      end
-
+       
       it 'renders the @users variables with validatation errors' do
-        post :create, user: {full_name:"something"}
         expect(assigns(:user)).to be_present
       end
     end
