@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: project_development
+  database: market_place_development
   pool: 5
   username: eduardo  
   password: password
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: project_test
+  database: market_place_test
   pool: 5
   username: eduardo
   password: password

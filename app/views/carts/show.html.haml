@@ -1,0 +1,28 @@
+.container
+  %h1.text-center Your cart 
+  %hr
+  .row
+    .col-xs-8
+      - @cart.order_items.each do |item|
+        .row
+          .col-xs-2
+            = image_tag('image_name', :class => "img-responsive")
+          .col-xs-10
+            %h2 #{item.product.name}
+            %p Quantity: #{item.quantity}
+            %p Item total: #{item.total_price}
+            %hr
+    .col-xs-4
+      %p Subtotal: #{@cart.subtotal}
+      %p Tax: #{@cart.tax}
+      %p Shipping: #{@cart.shipping}
+      %hr
+      %p Grand total: #{@cart.total}
+      = link_to new_payment_path do
+        %button.btn.btn-success Check Out
+
+
+
+
+           
+        

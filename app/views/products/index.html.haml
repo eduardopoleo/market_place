@@ -1,0 +1,15 @@
+%h1.text-center Welcome to the Market Place
+%hr
+.container
+  - @products.each_slice(4) do |products|
+    .row
+      - products.each do |product|
+        .col-md-3
+          .thumbnail
+            = link_to product_path(product) do
+              = image_tag('place_holder.jpeg', :class => "img-responsive") 
+            .caption
+              %h3 Thumbnail label
+              %p ...
+              %p
+                %a.btn.btn-primary{:href => "#", :role => "button"} Button
