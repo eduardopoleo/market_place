@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: fire_camp_development
+  database: project_development
   pool: 5
   username: eduardo  
   password: password
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: fire_camp_test
+  database: project_test
   pool: 5
   username: eduardo
   password: password

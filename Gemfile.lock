@@ -265,6 +265,8 @@ GEM
     redis (3.2.1)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
+    rename (1.0.2)
+      rails (>= 3.0.0)
     rendezvous (0.0.2)
     rest-client (1.7.3)
       mime-types (>= 1.16, < 3.0)
@@ -383,6 +385,7 @@ DEPENDENCIES
   pry-nav
   rails (= 4.1.1)
   rails_12factor
+  rename
   rspec-rails (= 2.99)
   sass-rails
   selenium-webdriver
