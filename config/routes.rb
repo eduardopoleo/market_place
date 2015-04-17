@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :order_items, only: [:create]
-  resources :carts, only: [:show, :create]
+  resources :carts, only: [:show, :create, :index]
   resources :payments, only: [:new, :create, :index]
+
+  get '/show_current_cart', to: 'carts#show_current_cart', as: 'show_current_cart'
 
   get '/payment_completed', to: 'payments#payment_completed', as: 'payment_completed'
   resources :users, only: [:new, :create] do

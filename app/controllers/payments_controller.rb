@@ -17,6 +17,7 @@ class PaymentsController < ApplicationController
       @payment = Payment.create(
         user: current_user,
         amount: current_cart.total,
+        cart: current_cart,
         reference_id: payment_id(stripe_payment))
         current_cart.update_attribute(:active, false)
         session[:cart_id] = nil

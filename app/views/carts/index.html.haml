@@ -1,0 +1,22 @@
+.container
+  - @carts.each do |cart|
+    .highlight
+      .row
+        .col-xs-8
+          %h3 #{cart.created_at.strftime("%b %d, %Y")}
+          - cart.order_items.each do |item|
+            .row
+              .col-xs-2
+                = image_tag('place_holder.png', :class => "img-responsive")
+              .col-xs-10
+                %h2 #{item.product.name}
+                %p Quantity: #{item.quantity}
+                %p Item total: $#{item.total_price/100.00}
+                %hr
+        .col-xs-4
+          %p Subtotal: $#{cart.subtotal/100.00}
+          %p After Tax: $#{cart.tax/100.00}
+          %p Shipping: $#{cart.shipping/100.00}
+          %hr
+          %p Grand total: $ #{cart.total/100.00}
+    %hr  

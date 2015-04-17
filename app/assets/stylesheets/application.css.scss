@@ -18,8 +18,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#keep-shopping{
+  float: right;
+}
+
 .post{
   border: solid 1px black;
+}
+
+.highlight{
+  background-color: #f7f7f9;
+  padding: 9px 14px;
 }
 
 .post-like{

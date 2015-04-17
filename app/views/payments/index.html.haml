@@ -5,12 +5,14 @@
         %th Customer 
         %th Email 
         %th Amount
-        %th Reference Id
+        %th Stripe's payment id
     %tbody
-      - @payments.each do |payment|
+      - @payments.reverse.each do |payment|
         %tr
-          %td #{payment.user.full_name}
-          %td #{payment.user.email}
+          %td Jane Doe
+          %td janedoe@gmail.com
           %td $#{payment.amount/100.00}
-          %td #{payment.reference_id}
+          %td
+            = link_to cart_path(payment.cart) do
+              #{payment.reference_id}
           

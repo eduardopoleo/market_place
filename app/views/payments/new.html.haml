@@ -12,15 +12,15 @@
           %span.payment-errors
           .form-group
             %label.control-label(for='credit-card-number') Credit Card Number
-            %input.form-control#credit-card-number(type="text" data-stripe = "number")
+            %input.form-control#credit-card-number(type="text" data-stripe = "number" value="4242424242424242")
           .form-group
             %label.control-label(for='security-code') Security Code
-            %input.form-control#security-code(type="text" data-stripe = "cvc")
+            %input.form-control#security-code(type="text" data-stripe = "cvc" value="123")
           .form-group
             %label.control-label Expiration
             = select_month(Date.today, {add_month_numbers: true},  class: 'form-control', data: {stripe: "exp-month"})
             %br
-            = select_year(Date.today.year, {start_year: Date.today.year, end_year: Date.today.year + 4}, class: 'form-control', data: {stripe: "exp-year"})
+            = select_year(Date.today.year, {start_year: Date.today.year + 1, end_year: Date.today.year + 4}, class: 'form-control', data: {stripe: "exp-year"})
         %fieldset.actions.control-group
           .controls
-            %input(type="submit" value="Sign Up" class="btn btn-default")
+            %input(type="submit" value="Submit Payment" class="btn btn-default")

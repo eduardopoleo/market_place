@@ -1,6 +1,7 @@
 .container
-  %h1.text-center Order Information
+  %h1.text-center Your current cart 
   %hr
+  - if @cart.order_items.size > 0
     .row
       .col-xs-8
         - @cart.order_items.each do |item|
@@ -18,3 +19,13 @@
         %p Shipping: $#{@cart.shipping/100.00}
         %hr
         %p Grand total: $ #{@cart.total/100.00}
+        = link_to new_payment_path do
+          %button.btn.btn-success Check Out
+        = link_to 'Keep Shopping', products_path, id: 'keep-shopping'
+  - else
+    %h2.text-center Your cart is currently empty
+
+
+
+           
+        
