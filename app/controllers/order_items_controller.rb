@@ -8,7 +8,7 @@ class OrderItemsController < ApplicationController
       unit_price: product.price) 
 
     order_item.save
-    cart.save
+    cart.update_cart
     redirect_to cart_path(cart)
   end
 

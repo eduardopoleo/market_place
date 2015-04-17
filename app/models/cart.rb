@@ -1,11 +1,8 @@
 class Cart < ActiveRecord::Base
   has_many :order_items
 
-  before_save do
-   update_cart 
-  end
 
-  def set_subtotal
+  def update_subtotal
     if order_items.size > 0
       self.subtotal = order_items.map(&:total_price).reduce(:+)
     else
@@ -13,22 +10,22 @@ class Cart < ActiveRecord::Base
     end
   end
 
-  def set_tax
-    self.tax = subtotal * 0.13   
+  def update_tax
+    update_attribute(:tax, self.subtotal * 0.13)
   end
 
   def set_shipping
     self.shipping = 100
   end
 
-  def set_grand_total
-   self.total =  self.subtotal + self.tax + self.shipping
+  def update_grandtotal
+   update_attribute(:total, self.subtotal + self.tax + self.shipping)
   end
 
   def update_cart
-    set_subtotal
-    set_tax
+    update_subtotal
+    update_tax
     set_shipping
-    set_grand_total
+    update_grandtotal
   end
 end

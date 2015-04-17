@@ -3,23 +3,33 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
   end
 
+  def index
+    @payments = Payment.all
+  end
+
   def create
-    @payment = current_user.payments.build(amount: current_cart.total)
     stripe_payment = StripeWrapper::Charge.create(
       amount: current_cart.total,
       currency: 'usd', 
       card: params[:stripeToken] 
     )
     if stripe_payment.successful? 
-      @payment.save
-      redirect_to payment_completed_path
+      @payment = Payment.create(
+        user: current_user,
+        amount: current_cart.total,
+        reference_id: payment_id(stripe_payment))
+        current_cart.update_attribute(:active, false)
+        session[:cart_id] = nil
+        redirect_to payments_path
     else
+      @payment = Payment.new
       flash[:error] = stripe_payment.error_message
       render :new
     end
   end
 
-  def payment_completed
-
+  private
+  def payment_id(stripe_response)
+    (JSON.parse stripe_response.response.to_s)['id']
   end
 end

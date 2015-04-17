@@ -4,7 +4,7 @@
       = image_tag('place_holder.jpeg', :class => "img-responsive")
     .col-xs-4.product-options
       %h3 #{@product.name}
-      %p $#{@product.price/100}
+      %p $#{@product.price/100.00}
       = bootstrap_form_for(@order_item) do |f|
         = f.number_field :quantity
         = hidden_field_tag :product_id, @product.id

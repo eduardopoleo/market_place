@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :order_items, only: [:create]
   resources :carts, only: [:show, :create]
-  resources :payments, only: [:new, :create]
+  resources :payments, only: [:new, :create, :index]
 
   get '/payment_completed', to: 'payments#payment_completed', as: 'payment_completed'
   resources :users, only: [:new, :create] do

@@ -1,0 +1,16 @@
+.container
+  %table.table
+    %thead
+      %tr
+        %th Customer 
+        %th Email 
+        %th Amount
+        %th Reference Id
+    %tbody
+      - @payments.each do |payment|
+        %tr
+          %td #{payment.user.full_name}
+          %td #{payment.user.email}
+          %td $#{payment.amount/100.00}
+          %td #{payment.reference_id}
+          
