@@ -5,7 +5,11 @@
         %th Customer 
         %th Email 
         %th Amount
-        %th Stripe's payment id
+        %th 
+          Stripe's payment id
+          %br
+          (Actual id generated from my stripe account)
+
     %tbody
       - @payments.reverse.each do |payment|
         %tr

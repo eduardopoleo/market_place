@@ -3,7 +3,8 @@
     .highlight
       .row
         .col-xs-8
-          %h3 #{cart.created_at.strftime("%b %d, %Y")}
+          .row
+            %h3.date #{cart.created_at.strftime("%b %d, %Y")}
           - cart.order_items.each do |item|
             .row
               .col-xs-2
@@ -15,8 +16,8 @@
                 %hr
         .col-xs-4
           %p Subtotal: $#{cart.subtotal/100.00}
-          %p After Tax: $#{cart.tax/100.00}
+          %p Tax: $#{cart.tax/100.00}
           %p Shipping: $#{cart.shipping/100.00}
           %hr
           %p Grand total: $ #{cart.total/100.00}
-    %hr  
+    %br

@@ -18,35 +18,72 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+  font-family:  'Josefin Slab', serif;
+  color: #3B1A01;
+ 	background-image: url("wood.jpg");
+}
+
+.title{
+  color: #3B1A01;
+}
+
+.product{
+  background-color: #3B1A01;
+  border: solid 1px #3B1A01;
+-webkit-box-shadow: 0 7px 4px #777;
+	-moz-box-shadow: 0 7px 4px #777;
+	box-shadow: 0 7px 4px #777;
+}
+
+
+.date{
+  margin-top: 0; 
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+.navbar-default .navbar-brand{
+   color: #3B1A01;
+}
+.navbar-nav > li > a{
+}
+.navbar-default .navbar-nav > li > a{
+  color: #3B1A01;
+}
+
+.btn{
+  font-weight: 700;
+}
+
+.navbar-default{
+  background-color: transparent;
+  background: transparent;
+  border: transparent;
+}
+
+.product-description{
+  color: #DCFFB6;
+}
+
+.product-name2{
+  margin-top: 0;
+}
+
+.product-name{
+  margin-top: 5px;
+  color: #DCFFB6;
+}
+
 #keep-shopping{
   float: right;
 }
 
-.post{
-  border: solid 1px black;
-}
 
 .highlight{
   background-color: #f7f7f9;
   padding: 9px 14px;
+  opacity: 0.5;
+  border-radius: 5px;
 }
-
-.post-like{
-  float: right;
-  position: relative;
-  top: -10px;
-}
-
-.small-panels{
-  list-style: none;
-  display: inline;
-  float: left;
-  width:100%;
-  padding:0;
-}
-
-.small-panels li {
-  float: left;
-}
-
 

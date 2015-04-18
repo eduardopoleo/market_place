@@ -1,5 +1,11 @@
 .container
-  %h1.text-center Your current cart 
+  %h1.text-center Your Cart 
+  .row
+    .col-xs-4
+      %h3 #{current_cart.order_items.size} items in Your Cart
+    .col-xs-1.col-xs-offset-6
+      = link_to 'Keep Shopping', products_path, class: 'btn btn-info' 
+
   %hr
   - if @cart.order_items.size > 0
     .row
@@ -7,12 +13,12 @@
         - @cart.order_items.each do |item|
           .row
             .col-xs-2
-              = image_tag('place_holder.png', :class => "img-responsive")
+              = image_tag('map.jpg', :class => "img-responsive")
             .col-xs-10
-              %h2 #{item.product.name}
+              %h2.product-name2 #{item.product.name}
               %p Quantity: #{item.quantity}
               %p Item total: $#{item.total_price/100.00}
-              %hr
+              %br
       .col-xs-4
         %p Subtotal: $#{@cart.subtotal/100.00}
         %p Tax: $#{@cart.tax/100.00}
@@ -21,7 +27,6 @@
         %p Grand total: $ #{@cart.total/100.00}
         = link_to new_payment_path do
           %button.btn.btn-success Check Out
-        = link_to 'Keep Shopping', products_path, id: 'keep-shopping'
   - else
     %h2.text-center Your cart is currently empty
 
