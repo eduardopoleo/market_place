@@ -6,7 +6,7 @@
         - @cart.order_items.each do |item|
           .row
             .col-xs-2
-              = image_tag('place_holder.png', :class => "img-responsive")
+              = image_tag(item.product.cover, :class => "img-responsive")
             .col-xs-10
               %h2 #{item.product.name}
               %p Quantity: #{item.quantity}

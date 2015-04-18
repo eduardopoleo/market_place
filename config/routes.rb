@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root 'welcome#landing_page'
+  root 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show, :new, :create]
   resources :order_items, only: [:create]
   resources :carts, only: [:show, :create, :index]
   resources :payments, only: [:new, :create, :index]
@@ -20,5 +20,4 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: 'logout'
-  mount StripeEvent::Engine, at: '/stripe_events'
 end

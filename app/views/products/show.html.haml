@@ -1,7 +1,7 @@
 .container
   .row
     .col-xs-8
-      = image_tag('sofa.jpg', :class => "img-responsive")
+      = image_tag(@product.cover, :class => "img-responsive")
     .col-xs-4.product-options
       %h3 #{@product.name}
       %p $#{@product.price/100.00}

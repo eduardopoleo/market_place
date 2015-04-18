@@ -15,12 +15,11 @@
           = link_to show_current_cart_path do
             (#{current_cart.order_items.size})
             %span.glyphicon.glyphicon-shopping-cart 
-
+        %li
+          = link_to 'Add Product', new_product_path
         %li
           = link_to 'Orders', carts_path
         %li
           = link_to 'Products', products_path
         %li
           = link_to 'Payments', payments_path
-    / /.navbar-collapse
-  / /.container-fluid

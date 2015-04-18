@@ -3,6 +3,4 @@
 #
 # Examples:
 #
-8.times do
-  Fabricate(:product)
-end 
+ 

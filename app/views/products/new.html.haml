@@ -1,5 +1,11 @@
-= bootstrap_form_for(@product) do |f|
-  = f.text_field :name
-  = f.text_field :description
-  = f.number_field :price
-  = f.submit "Sign Up"
+.container
+  %h1.text-center
+    Add Product
+  %hr
+  .row
+    = bootstrap_form_for(@product) do |f|
+      = f.text_field :name
+      = f.text_field :description
+      = f.number_field :price, help: "Price in cents"
+      = f.file_field :cover, class: 'btn btn-file'
+      = f.submit "Create", class: 'btn btn-success'
