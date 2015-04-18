@@ -2,6 +2,8 @@
   .row
     .col-xs-8
       = image_tag(@product.cover, :class => "img-responsive")
+      %br
+      = link_to 'Edit Product', edit_product_path, class: 'btn btn-info'
     .col-xs-4.product-options
       %h3 #{@product.name}
       %p $#{@product.price/100.00}
