@@ -19,6 +19,7 @@ gem 'unicorn'
 gem "sentry-raven"
 gem 'paratrooper'
 gem 'carrierwave'
+gem 'carrierwave-aws'
 gem 'mini_magick'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
