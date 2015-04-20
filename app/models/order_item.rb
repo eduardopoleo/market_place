@@ -4,7 +4,7 @@ class OrderItem < ActiveRecord::Base
 
   validates :quantity,
     presence: true,
-    numericality: { only_integer: true, greater_than: 0 }
+    numericality: {only_integer: true, greater_than: 0}
   before_save {total_price}
 
   def total_price
